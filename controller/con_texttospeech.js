@@ -148,9 +148,9 @@ exports.w2l = async (file) => {
         args: ['--checkpoint_path', '/media/Wav2Lip/checkpoints/wav2lip.pth', '--face', '/media/assets/video.mp4', '--audio', `/media/tegi-backend/mp3/${file}.mp3`, '--resize_factor', '2', '--outfile', `/media/assets/${file}.mp4` ]
       };
 
-    PythonShell.run(`inference.py`, options, function (err) {
+    PythonShell.run(`inference.py`, options, function (err, results) {
         if (err) throw err;
-        console.log('finished');
+        console.log('results: %j', results);
       });
 
     
