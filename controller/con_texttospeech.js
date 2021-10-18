@@ -136,20 +136,28 @@ const updloadToBucket = async (filename, user) => {
 
 exports.gtts = async (req, res) => {
 
-    // PythonShell.run(`${process.cwd()}/controller/test.py`, null, function (err) {
-    //     if (err) throw err;
-    //     console.log('finished');
-    //   });
-    
-    const python = spawn('python', [`${process.cwd()}/controller/test.py`]);
+    PythonShell.run(`/media/tegi-backend/controller/test.py`, null, function (err) {
+        if (err) throw err;
+        console.log('finished');
+      });
 
-    python.stdout.on('data', function (data) {
-        console.log(data);
-    });
-    // in close event we are sure that stream from child process is closed
-    python.on('close', (code) => {
-        console.log(`child process close all stdio with code ${code}`);
-        // send data to browser
-    });
+    //   let options = {
+    //     mode: 'text',
+    //     pythonPath: 'path/to/python',
+    //     pythonOptions: ['-u'], // get print results in real-time
+    //     scriptPath: 'path/to/my/scripts',
+    //     args: ['value1', 'value2', 'value3']
+    //   };
+    
+    // const python = spawn('python', [`${process.cwd()}/controller/test.py`]);
+
+    // python.stdout.on('data', function (data) {
+    //     console.log(data);
+    // });
+    // // in close event we are sure that stream from child process is closed
+    // python.on('close', (code) => {
+    //     console.log(`child process close all stdio with code ${code}`);
+    //     // send data to browser
+    // });
 
 }
