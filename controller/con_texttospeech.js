@@ -150,7 +150,7 @@ exports.w2l = async (file) => {
         args: ['--checkpoint_path', '/media/Wav2Lip/checkpoints/wav2lip.pth', '--face', '/media/assets/video.mp4', '--audio', `/media/assets/ko.mp3`, '--resize_factor', '2' ]
       };
 
-    PythonShell.run(`sudo inference.py`, options, function (err, results) {
+    PythonShell.run(`inference.py`, options, function (err, results) {
         if (err) throw err;
         console.log('results: %j asd', results);
       });
