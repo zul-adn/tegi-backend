@@ -138,13 +138,13 @@ exports.gtts = async (req, res) => {
 
       let options = {
         mode: 'text',
-        pythonPath: 'path/to/python',
+        // pythonPath: 'path/to/python',
         pythonOptions: ['-u'], // get print results in real-time
-        scriptPath: 'path/to/my/scripts',
+        scriptPath: '/media/Wav2Lip/',
         args: ['--checkpoint_path', 'checkpoints/wav2lip_(1).pth', '--face', '../assets/video.mp3', '--audio', '../assets/ko.mp3', '--resize_factor', '2', '--outfile', '../assets/r.mp4' ]
       };
 
-    PythonShell.run(`/media/Wav2Lip/inference.py`, options, function (err) {
+    PythonShell.run(`inference.py`, options, function (err) {
         if (err) throw err;
         console.log('finished');
       });
