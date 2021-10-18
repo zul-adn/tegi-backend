@@ -4,8 +4,11 @@ require('dotenv').config();
 var sdk = require("microsoft-cognitiveservices-speech-sdk");
 const { Storage } = require('@google-cloud/storage')
 var fs = require('fs');
-const {TextToSpeechClient} = require('@google-cloud/text-to-speech');
-const util  = require('util')
+const { TextToSpeechClient } = require('@google-cloud/text-to-speech');
+const util = require('util')
+const { spawn } = require('child_process');
+// const { cwd } = require('process');
+const {PythonShell} = require('python-shell')
 
 
 const CREDENTIAL = JSON.parse(process.env.CREDENTIALS_GCP_STORAGE)
@@ -29,7 +32,7 @@ exports.tts = async (req, res) => {
 
     const { text, user, fpuuid } = req.body
 
-    var filename = `${user}-${fpuuid}.wav`;
+    var filename = `${user}-${fpuuid}.mp3`;
 
     // var audioConfig = sdk.AudioConfig.fromAudioFileOutput(`/tmp/${filename}`);
     // var speechConfig = sdk.SpeechConfig.fromSubscription(AZURE_TTS_SUBSCRIPTION_KEY, AZURE_RESOURCE_LOCATION);
@@ -59,6 +62,27 @@ exports.tts = async (req, res) => {
     //         synthesizer.close();
     //         synthesizer = undefined;
     //     });
+
+    const request = {
+        input: { text: text },
+
+        voice: {
+            languageCode: 'en-US',
+            ssmlGender: 'NEUTRAL',
+            name: 'en-US-Wavenet-F'
+        },
+
+        audioConfig: { audioEncoding: 'MP3' },
+    };
+
+    // Performs the text-to-speech request
+    const [response] = await gtts.synthesizeSpeech(request);
+    // Write the binary audio content to a local file
+    const writeFile = util.promisify(fs.writeFile);
+    await writeFile(`mp3/${filename}`, response.audioContent, 'binary');
+    console.log('Audio content written to file: output.mp3');
+
+    //panggil python disini
 
     console.log("Now synthesizing to: " + filename);
 
@@ -110,29 +134,17 @@ const updloadToBucket = async (filename, user) => {
 //     return
 // }
 
-exports.gtts = async(req, res) => {
+exports.gtts = async (req, res) => {
+    
+    const python = spawn('python', [`${process.cwd()}/controller/test.py`]);
 
-    // const client = new textToSpeech.TextToSpeechClient();
+    python.stdout.on('data', function (data) {
+        console.log(data);
+    });
+    // in close event we are sure that stream from child process is closed
+    python.on('close', (code) => {
+        console.log(`child process close all stdio with code ${code}`);
+        // send data to browser
+    });
 
-    const text = 'Google Cloud Text-to-Speech enables developers to synthesize natural-sounding speech with 100+ voices';
-
-    // Construct the request
-    const request = {
-        input: { text: text },
-        // Select the language and SSML voice gender (optional)
-        voice: { 
-            languageCode: 'en-US', 
-            ssmlGender: 'NEUTRAL',
-            name: 'en-US-Wavenet-F' 
-        },
-        // select the type of audio encoding
-        audioConfig: { audioEncoding: 'MP3' },
-    };
-
-    // Performs the text-to-speech request
-    const [response] = await gtts.synthesizeSpeech(request);
-    // Write the binary audio content to a local file
-    const writeFile = util.promisify(fs.writeFile);
-    await writeFile('output.mp3', response.audioContent, 'binary');
-    console.log('Audio content written to file: output.mp3');
 }
