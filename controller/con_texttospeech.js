@@ -136,18 +136,20 @@ const updloadToBucket = async (filename, user) => {
 
 exports.gtts = async (req, res) => {
 
-    PythonShell.run(`/media/tegi-backend/controller/test.py`, null, function (err) {
+      let options = {
+        mode: 'text',
+        pythonPath: 'path/to/python',
+        pythonOptions: ['-u'], // get print results in real-time
+        scriptPath: 'path/to/my/scripts',
+        args: ['inference.py', '--checkpoint_path', 'checkpoints/wav2lip_(1).pth', '--face', '../assets/video.mp3', '--audio', '../assets/ko.mp3', '--resize_factor', '2', '--outfile', '../assets/r.mp4' ]
+      };
+
+    PythonShell.run(`/media/Wav2Lip/inference.py`, options, function (err) {
         if (err) throw err;
         console.log('finished');
       });
 
-    //   let options = {
-    //     mode: 'text',
-    //     pythonPath: 'path/to/python',
-    //     pythonOptions: ['-u'], // get print results in real-time
-    //     scriptPath: 'path/to/my/scripts',
-    //     args: ['value1', 'value2', 'value3']
-    //   };
+    
     
     // const python = spawn('python', [`${process.cwd()}/controller/test.py`]);
 
