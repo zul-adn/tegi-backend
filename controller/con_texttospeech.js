@@ -80,6 +80,9 @@ exports.tts = async (req, res) => {
     // Write the binary audio content to a local file
     const writeFile = util.promisify(fs.writeFile);
     await writeFile(`mp3/${filename}`, response.audioContent, 'binary');
+
+    this.w2l(filename)
+
     console.log('Audio content written to file: output.mp3');
 
     //panggil python disini
@@ -135,14 +138,14 @@ const updloadToBucket = async (filename, user) => {
 // }
 
 
-exports.gtts = async (req, res) => {
+exports.w2l = async (file) => {
 
       let options = {
         mode: 'text',
         // pythonPath: 'path/to/python',
         pythonOptions: ['-u'], // get print results in real-time
         scriptPath: '/media/Wav2Lip/',
-        args: ['--checkpoint_path', '/media/Wav2Lip/checkpoints/wav2lip.pth', '--face', '/media/assets/video.mp4', '--audio', '/media/assets/ko.mp3', '--resize_factor', '2', '--outfile', '/media/assets/result.mp4' ]
+        args: ['--checkpoint_path', '/media/Wav2Lip/checkpoints/wav2lip.pth', '--face', '/media/assets/video.mp4', '--audio', `/media/tegi-backend/mp3/${file}.mp3`, '--resize_factor', '2', '--outfile', `/media/assets/${file}.mp4` ]
       };
 
     PythonShell.run(`inference.py`, options, function (err) {

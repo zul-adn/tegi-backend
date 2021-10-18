@@ -15,7 +15,7 @@ module.exports = function (app) {
     app.post('/getbotreply',  BlenderBotController.blenderbot);
     app.get('/botreset', BlenderBotController.blenderbotreset);
     app.post('/tts',  TextToSpeechController.tts);
-    app.get('/gtts',  TextToSpeechController.gtts);
+    // app.get('/gtts',  TextToSpeechController.gtts);
 
     app.post('/createuser', AuthController.createuser);
     app.post('/login', AuthController.login);
