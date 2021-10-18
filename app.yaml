@@ -1,0 +1,4 @@
+runtime: nodejs14
+
+beta_settings:
+    cloud_sql_instances: tegiainew:asia-northeast3:tegiai-db
