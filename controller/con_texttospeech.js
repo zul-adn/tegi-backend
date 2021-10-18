@@ -147,12 +147,12 @@ exports.w2l = async (file) => {
         // pythonPath: 'path/to/python',
         pythonOptions: ['-u'], // get print results in real-time
         scriptPath: '/media/Wav2Lip/',
-        args: ['--checkpoint_path', '/media/Wav2Lip/checkpoints/wav2lip.pth', '--face', '/media/assets/video.mp4', '--audio', `/media/tegi-backend/mp3/${file}.mp3`, '--resize_factor', '2', '--outfile', `/media/assets/${file}.mp4` ]
+        args: ['--checkpoint_path', '/media/Wav2Lip/checkpoints/wav2lip.pth', '--face', '/media/assets/video.mp4', '--audio', `/media/assets/ko.mp3`, '--resize_factor', '2',  ]
       };
 
     PythonShell.run(`inference.py`, options, function (err, results) {
         if (err) throw err;
-        console.log('results: %j', results);
+        console.log('results: %j asd', results);
       });
 
     
@@ -164,7 +164,7 @@ exports.w2l = async (file) => {
     // });
     // // in close event we are sure that stream from child process is closed
     // python.on('close', (code) => {
-    //     console.log(`child process close all stdio with code ${code}`);
+    //     console.log(`child process close all stdio with code ${code}`);aaaa
     //     // send data to browser
     // });
 
