@@ -142,7 +142,7 @@ exports.gtts = async (req, res) => {
         // pythonPath: 'path/to/python',
         pythonOptions: ['-u'], // get print results in real-time
         scriptPath: '/media/Wav2Lip/',
-        args: ['--checkpoint_path', '/media/Wav2Lip/checkpoints/wav2lip.pth', '--face', '/media/assets/video.mp4', '--audio', '/media/assets/ko.mp3', '--resize_factor', '2', '--outfile', '/media/assets/r.mp4' ]
+        args: ['--checkpoint_path', '/media/Wav2Lip/checkpoints/wav2lip.pth', '--face', '/media/assets/video.mp4', '--audio', '/media/assets/ko.mp3', '--resize_factor', '2', '--outfile', '/media/assets/result.mp4' ]
       };
 
     PythonShell.run(`inference.py`, options, function (err) {
