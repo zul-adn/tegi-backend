@@ -142,30 +142,30 @@ exports.w2l = async (file) => {
 
     console.log("Masuk sini")
 
-    //   let options = {
-    //     mode: 'text',
-    //     // pythonPath: 'path/to/python',
-    //     pythonOptions: ['-u'], // get print results in real-time
-    //     scriptPath: '/media/Wav2Lip/',
-    //     args: ['--checkpoint_path', '/media/Wav2Lip/checkpoints/wav2lip.pth', '--face', '/media/assets/video.mp4', '--audio', `/media/assets/ko.mp3`, '--resize_factor', '2' ]
-    //   };
+      let options = {
+        mode: 'text',
+        // pythonPath: 'path/to/python',
+        pythonOptions: ['-u'], // get print results in real-time
+        scriptPath: '/media/Wav2Lip/',
+        args: ['--checkpoint_path', '/media/Wav2Lip/checkpoints/wav2lip.pth', '--face', '/media/assets/video.mp4', '--audio', `/media/assets/ko.mp3`, '--resize_factor', '2' ]
+      };
 
-    // PythonShell.run(`inference.py`, options, function (err, results) {
-    //     if (err) throw err;
-    //     console.log('results: %j asd', results);
-    //   });
+    PythonShell.run(`sudo inference.py`, options, function (err, results) {
+        if (err) throw err;
+        console.log('results: %j asd', results);
+      });
 
     
     
-    const python = spawn('sudo python3', [`/media/Wav2Lip/test.py`]);
+    // const python = spawn('sudo python3', [`/media/Wav2Lip/test.py`]);
 
-    python.stdout.on('data', function (data) {
-        console.log(data);
-    });
-    // in close event we are sure that stream from child process is closed
-    python.on('close', (code) => {
-        console.log(`child process close all stdio with code ${code}`);aaaa
-        // send data to browser
-    });
+    // python.stdout.on('data', function (data) {
+    //     console.log(data);
+    // });
+    // // in close event we are sure that stream from child process is closed
+    // python.on('close', (code) => {
+    //     console.log(`child process close all stdio with code ${code}`);aaaa
+    //     // send data to browser
+    // });
 
 }
