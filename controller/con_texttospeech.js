@@ -136,20 +136,20 @@ const updloadToBucket = async (filename, user) => {
 
 exports.gtts = async (req, res) => {
 
-    PythonShell.run(`${process.cwd()}/controller/test.py`, null, function (err) {
-        if (err) throw err;
-        console.log('finished');
-      });
+    // PythonShell.run(`${process.cwd()}/controller/test.py`, null, function (err) {
+    //     if (err) throw err;
+    //     console.log('finished');
+    //   });
     
-    // const python = spawn('python', [`${process.cwd()}/controller/test.py`]);
+    const python = spawn('python', [`${process.cwd()}/controller/test.py`]);
 
-    // python.stdout.on('data', function (data) {
-    //     console.log(data);
-    // });
-    // // in close event we are sure that stream from child process is closed
-    // python.on('close', (code) => {
-    //     console.log(`child process close all stdio with code ${code}`);
-    //     // send data to browser
-    // });
+    python.stdout.on('data', function (data) {
+        console.log(data);
+    });
+    // in close event we are sure that stream from child process is closed
+    python.on('close', (code) => {
+        console.log(`child process close all stdio with code ${code}`);
+        // send data to browser
+    });
 
 }
