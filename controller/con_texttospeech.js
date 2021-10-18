@@ -140,6 +140,8 @@ const updloadToBucket = async (filename, user) => {
 
 exports.w2l = async (file) => {
 
+    console.log("Masuk sini")
+
       let options = {
         mode: 'text',
         // pythonPath: 'path/to/python',
