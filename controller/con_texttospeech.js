@@ -54,11 +54,8 @@ exports.tts = async (req, res) => {
     const writeFile = util.promisify(fs.writeFile);
     await writeFile(`mp3/${filename}`, response.audioContent, 'binary');
 
-    const w2lip = w2l(filename, user)
+    const w2lip = w2l(filename, user, res)
 
-    if(w2lip === 1){
-        updloadToBucket(filename, 'zulamridn')
-    }
 
     console.log('Audio content written to file: output.mp3');
 
@@ -70,7 +67,7 @@ exports.tts = async (req, res) => {
 
 //============================================= UPLOAD AUDIO FILE TO GOOGLE STORADGE
 
-const updloadToBucket = async (filename, user) => {
+const updloadToBucket = async (filename, user, res) => {
 
     console.log("FORMATING....");
 
@@ -88,7 +85,9 @@ const updloadToBucket = async (filename, user) => {
     console.log(url)
     // fs.unlinkSync(`/media/tegi/${filename}`)
     if (url !== '') {
-        return true
+        res.json({
+            status: 200
+        })
     }
 }
 
@@ -124,12 +123,7 @@ const w2l = async (file, user, res) => {
 
     ls.on('close', (code) => {
         if(code === 0){
-            const upload = updloadToBucket(file, user)
-            if(upload){
-                response.json({
-                    status: 200
-                })
-            }
+            const upload = updloadToBucket(file, user, res)
         }
     });
 
