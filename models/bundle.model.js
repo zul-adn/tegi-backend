@@ -18,7 +18,7 @@ const sequelize = new Sequelize(
             idle: dbConfig.pool.idle
         },
         dialectOptions: {
-            socketPath: dbConfig.HOST
+            socketPath: "/var/run/mysqld/mysqld.sock"
         },
     }
 )
