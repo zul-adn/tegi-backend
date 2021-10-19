@@ -119,11 +119,11 @@ exports.w2l = async (file) => {
     const ls = spawn('python3', ['/media/Wav2Lip/inference.py', '--checkpoint_path', '/media/Wav2Lip/checkpoints/wav2lip.pth', '--face', '/media/assets/video.mp4', '--audio', `/media/tegi-backend/mp3/${file}`, '--outfile', `/media/assets/${file}.mp4` , '--resize_factor', '2']);
 
     ls.stdout.on('data', (data) => {
-        console.log(`stdout: ${data}`);
+        console.log(`stdout xxx: ${data}`);
     });
 
     ls.stderr.on('data', (data) => {
-        console.error(`stderr: ${data}`);
+        console.error(`stderr xxxx: ${data}`);
     });
 
     ls.on('close', (code) => {
