@@ -53,7 +53,7 @@ exports.tts = async (req, res) => {
     const writeFile = util.promisify(fs.writeFile);
     await writeFile(`mp3/${filename}`, response.audioContent, 'binary');
 
-    const w2lip = this.w2l(filename)
+    const w2lip = w2l(filename)
 
     if(w2lip === 1){
         updloadToBucket(filename, 'zulamridn')
@@ -112,7 +112,7 @@ const updloadToBucket = async (filename, user) => {
 // }
 
 
-exports.w2l = async (file) => {
+const w2l = async (file) => {
 
     console.log("Masuk sini")
 
