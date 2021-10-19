@@ -159,7 +159,7 @@ exports.w2l = async (file) => {
     
     // const python = spawn('sudo python3', [`/media/Wav2Lip/test.py`]);
 
-    const python = spawn(/^win/.test(process.platform) ? 'python3.cmd' : 'sudo python3', ['/media/Wav2Lip/test.py']);
+    const python = spawn('sudo python3', [`${process.cwd()}/controller/test.py`]);
 
     python.stdout.on('data', function (data) {
         console.log(data);
