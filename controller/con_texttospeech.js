@@ -127,7 +127,10 @@ exports.w2l = async (file) => {
     });
 
     ls.on('close', (code) => {
-        return 1
+        if(code === 0){
+            console.log(code)
+            return 1
+        }
     });
 
 }
