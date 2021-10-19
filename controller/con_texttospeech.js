@@ -88,13 +88,8 @@ const updloadToBucket = async (filename, user) => {
     console.log(url)
     // fs.unlinkSync(`/media/tegi/${filename}`)
     if (url !== '') {
-
-        response = {
-            "status": "Success"
-        }
+        return true
     }
-
-    return true
 }
 
 // const formatFolder = async (user) => {
@@ -131,10 +126,9 @@ const w2l = async (file, user, res) => {
         if(code === 0){
             const upload = updloadToBucket(file, user)
             if(upload){
-                console.log(upload)
-            //    response.json({
-            //        "Status": 'Sukses'
-            //    })
+                response.json({
+                    status: 200
+                })
             }
         }
     });
