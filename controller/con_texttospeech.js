@@ -131,9 +131,10 @@ const w2l = async (file, user, res) => {
         if(code === 0){
             const upload = updloadToBucket(file, user)
             if(upload){
-               response.json({
-                   "Status": 'Sukses'
-               })
+                console.log(upload)
+            //    response.json({
+            //        "Status": 'Sukses'
+            //    })
             }
         }
     });
