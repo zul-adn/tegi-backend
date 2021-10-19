@@ -128,7 +128,7 @@ const w2l = async (file, user, res) => {
 
     ls.on('close', (code) => {
         if(code === 0){
-            const upload = updloadToBucket(filename, user)
+            const upload = updloadToBucket(file, user)
             if(upload){
                 res.json({
                     "status" : "sukses"
