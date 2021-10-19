@@ -27,7 +27,10 @@ routes(app)
 
 const PORT = process.env.PORT
 
-
-var server = https.createServer(options, app).listen(PORT, function() {
-    console.log(`Runninggg ${PORT}`)
+app.listen(PORT, ()=> {
+  console.log("Running on serveer")
 })
+
+// var server = https.createServer(options, app).listen(PORT, function() {
+//     console.log(`Runninggg ${PORT}`)
+// })
