@@ -8,7 +8,7 @@ const { TextToSpeechClient } = require('@google-cloud/text-to-speech');
 const util = require('util')
 const { spawn } = require('child_process');
 // const { cwd } = require('process');
-const {PythonShell} = require('python-shell')
+const { PythonShell } = require('python-shell')
 
 
 const CREDENTIAL = JSON.parse(process.env.CREDENTIALS_GCP_STORAGE)
@@ -155,15 +155,28 @@ exports.w2l = async (file) => {
     //     console.log('results: %j asd', results);
     //   });
 
-    
-    
+
+
     // const python = spawn('sudo python3', [`/media/Wav2Lip/test.py`]);
+    const ls = spawn('ls', ['-lh', '/usr']);
 
-    const python = spawn('sudo python3', [`${process.cwd()}/controller/test.py`]);
-
-    python.stdout.on('data', function (data) {
-        console.log(data);
+    ls.stdout.on('data', (data) => {
+        console.log(`stdout: ${data}`);
     });
+
+    ls.stderr.on('data', (data) => {
+        console.error(`stderr: ${data}`);
+    });
+
+    ls.on('close', (code) => {
+        console.log(`child process exited with code ${code}`);
+    });
+
+    // const python = spawn('sudo python3', [`${process.cwd()}/controller/test.py`]);
+
+    // python.stdout.on('data', function (data) {
+    //     console.log(data);
+    // });
     // in close event we are sure that stream from child process is closed
     // python.on('close', (code) => {
     //     console.log(`child process close all stdio with code ${code}`);aaaa
