@@ -116,7 +116,7 @@ exports.w2l = async (file) => {
 
     console.log("Masuk sini")
 
-    const ls = spawn('python3', ['/media/Wav2Lip/inference.py', '--checkpoint_path', '/media/Wav2Lip/checkpoints/wav2lip.pth', '--face', '/media/assets/video.mp4', '--audio', `/media/tegi-backend/mp3/${file}.mp3`, '--outfile', `/media/assets/${file}.mp4` , '--resize_factor', '2']);
+    const ls = spawn('python3', ['/media/Wav2Lip/inference.py', '--checkpoint_path', '/media/Wav2Lip/checkpoints/wav2lip.pth', '--face', '/media/assets/video.mp4', '--audio', `/media/tegi-backend/mp3/${file}`, '--outfile', `/media/assets/${file}.mp4` , '--resize_factor', '2']);
 
     ls.stdout.on('data', (data) => {
         console.log(`stdout: ${data}`);
