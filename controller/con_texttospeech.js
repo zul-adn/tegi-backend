@@ -8,7 +8,8 @@ const { TextToSpeechClient } = require('@google-cloud/text-to-speech');
 const util = require('util')
 const { spawn } = require('child_process');
 // const { cwd } = require('process');
-const { PythonShell } = require('python-shell')
+const { PythonShell } = require('python-shell');
+const { response } = require('express');
 
 
 const CREDENTIAL = JSON.parse(process.env.CREDENTIALS_GCP_STORAGE)
@@ -130,9 +131,9 @@ const w2l = async (file, user, res) => {
         if(code === 0){
             const upload = updloadToBucket(file, user)
             if(upload){
-                res.json({
-                    "status" : "sukses"
-                })
+               response.json({
+                   "Status": 'Sukses'
+               })
             }
         }
     });
