@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 module.exports = {
-    HOST: `/cloudsql/${process.env.DB_INSTANCE_CONNECTION_NAME}`,
+    HOST: process.env.DB_HOST,
     USER: process.env.DB_USER,
     PASSWORD: process.env.DB_PASSWORD,
     DBNAME: process.env.DB_NAME,

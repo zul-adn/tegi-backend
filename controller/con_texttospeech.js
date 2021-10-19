@@ -79,8 +79,8 @@ const updloadToBucket = async (filename, user) => {
     console.log("UPLOADING....");
 
     let response
-    const createFile = await gc.bucket(`tegiai-bucket`).upload(`/media/assets/${filename}`, {
-        destination: `${user}/${filename}`
+    const createFile = await gc.bucket(`tegiai-bucket`).upload(`/media/assets/${filename}.mp4`, {
+        destination: `${user}/${filename}.mp4`
     });
 
     const url = createFile[0].metadata.selfLink;
