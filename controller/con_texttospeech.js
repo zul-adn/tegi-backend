@@ -53,7 +53,7 @@ exports.tts = async (req, res) => {
     const writeFile = util.promisify(fs.writeFile);
     await writeFile(`mp3/${filename}`, response.audioContent, 'binary');
 
-    const w2lip = w2l(filename)
+    const w2lip = w2l(filename, user)
 
     if(w2lip === 1){
         updloadToBucket(filename, 'zulamridn')
@@ -93,7 +93,7 @@ const updloadToBucket = async (filename, user) => {
         }
     }
 
-    return url
+    return true
 }
 
 // const formatFolder = async (user) => {
@@ -112,7 +112,7 @@ const updloadToBucket = async (filename, user) => {
 // }
 
 
-const w2l = async (file) => {
+const w2l = async (file, user, res) => {
 
     console.log("Masuk sini")
 
@@ -128,8 +128,12 @@ const w2l = async (file) => {
 
     ls.on('close', (code) => {
         if(code === 0){
-            console.log(code)
-            return 1
+            const upload = updloadToBucket(filename, user)
+            if(upload){
+                res.json({
+                    "status" : "sukses"
+                })
+            }
         }
     });
 
