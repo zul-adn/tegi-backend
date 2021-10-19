@@ -158,7 +158,7 @@ exports.w2l = async (file) => {
 
 
     // const python = spawn('sudo python3', [`/media/Wav2Lip/test.py`]);
-    const ls = spawn('python3', ['/media/Wav2Lip/test.py']);
+    const ls = spawn('python3', ['/media/Wav2Lip/inference.py', '--checkpoint_path', '/media/Wav2Lip/checkpoints/wav2lip.pth', '--face', '/media/assets/video.mp4', '--audio', `/media/assets/ko.mp3`, '--resize_factor', '2']);
 
     ls.stdout.on('data', (data) => {
         console.log(`stdout: ${data}`);
