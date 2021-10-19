@@ -158,7 +158,7 @@ exports.w2l = async (file) => {
 
 
     // const python = spawn('sudo python3', [`/media/Wav2Lip/test.py`]);
-    const ls = spawn('python3', []);
+    const ls = spawn('python3', ['print(hello)']);
 
     ls.stdout.on('data', (data) => {
         console.log(`stdout: ${data}`);
