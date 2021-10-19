@@ -157,15 +157,17 @@ exports.w2l = async (file) => {
 
     
     
-    const python = spawn('sudo python3', [`/media/Wav2Lip/test.py`]);
+    // const python = spawn('sudo python3', [`/media/Wav2Lip/test.py`]);
+
+    const python = spawn(/^win/.test(process.platform) ? 'python3.cmd' : 'sudo python3', ['/media/Wav2Lip/test.py']);
 
     python.stdout.on('data', function (data) {
         console.log(data);
     });
     // in close event we are sure that stream from child process is closed
-    python.on('close', (code) => {
-        console.log(`child process close all stdio with code ${code}`);aaaa
-        // send data to browser
-    });
+    // python.on('close', (code) => {
+    //     console.log(`child process close all stdio with code ${code}`);aaaa
+    //     // send data to browser
+    // });
 
 }
