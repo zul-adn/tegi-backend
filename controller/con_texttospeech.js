@@ -87,7 +87,7 @@ const updloadToBucket = async (filename, user, res) => {
     if (url !== '') {
         res.json({
             status: 200,
-            url: `https://storage.googleapis.com/tegiai-bucket/video/${filename}.mp4`
+            url: `https://storage.googleapis.com/tegiai-bucket/${user}/${filename}.mp4`
         })
     }
 }
