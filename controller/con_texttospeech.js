@@ -91,22 +91,6 @@ const updloadToBucket = async (filename, user, res) => {
     }
 }
 
-// const formatFolder = async (user) => {
-
-//     let dirName = user;
-
-//     let files = await gc.bucket(`tegiai-bucket`).getFiles();
-
-//     let dirFiles = files.filter(f => f.id.includes(dirName + "/"))
-//     // Delete the files
-//     dirFiles.forEach(async file => {
-//         await file.delete();
-//     })
-
-//     return
-// }
-
-
 const w2l = async (file, user, res) => {
 
     console.log("Masuk sini")
