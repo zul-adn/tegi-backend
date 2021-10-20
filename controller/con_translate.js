@@ -51,38 +51,6 @@ exports.translate = async (req, res) => {
             "body": translation
         })
 
-
-        // var subscriptionKey = AZURE_TRANSLATE_SUBSCRIPTION_KEY;
-        // var endpoint = AZURE_TRANSLATE_ENDPOINT;
-        // var location = AZURE_RESOURCE_LOCATION;
-
-        // console.log(text)
-
-        // axios({
-        //     baseURL: endpoint,
-        //     url: '/translate',
-        //     method: 'post',
-        //     headers: {
-        //         'Ocp-Apim-Subscription-Key': subscriptionKey,
-        //         'Ocp-Apim-Subscription-Region': location,
-        //         'Content-type': 'application/json',
-        //         'X-ClientTraceId': uuidv4().toString()
-        //     },
-        //     params: {
-        //         'api-version': '3.0',
-        //         'from': 'en',
-        //         'to': ['ko']
-        //     },
-        //     data: [{
-        //         'text': text
-        //     }],
-        //     responseType: 'json'
-        // }).then(function (response) {
-        //     res.json({
-        //         "body": response.data[0].translations[0].text
-        //     })
-        // })
-
     } catch (error) {
         console.log(error)
     }
