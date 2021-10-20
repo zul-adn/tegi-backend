@@ -5,9 +5,6 @@ const { v4: uuidv4 } = require('uuid');
 require('dotenv').config();
 
 const CREDENTIAL = JSON.parse(process.env.CREDENTIALS_GCP)
-const AZURE_TRANSLATE_SUBSCRIPTION_KEY = process.env.AZURE_TRANSLATE_SUBSCRIPTION_KEY
-const AZURE_TRANSLATE_ENDPOINT = process.env.AZURE_TRANSLATE_ENDPOINT
-const AZURE_RESOURCE_LOCATION = process.env.AZURE_RESOURCE_LOCATION
 
 const translate = new Translate({
     credentials: CREDENTIAL,
