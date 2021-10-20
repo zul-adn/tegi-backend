@@ -86,7 +86,8 @@ const updloadToBucket = async (filename, user, res) => {
     // fs.unlinkSync(`/media/tegi/${filename}`)
     if (url !== '') {
         res.json({
-            status: 200
+            status: 200,
+            url: `https://storage.googleapis.com/tegiai-bucket/video/${filename}.mp4`
         })
     }
 }
